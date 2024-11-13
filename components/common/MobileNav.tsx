@@ -6,6 +6,7 @@ import Search from './Search'
 import Link from 'next/link'
 import Basket from '../common/Basket'
 import { MdFavorite } from 'react-icons/md'
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const MobileNav = () => {
 
@@ -38,7 +39,16 @@ const MobileNav = () => {
                
                 <Link href="/favorite"><MdFavorite size={25}/></Link>
                
-                <Link href="/contact">Giriş</Link>
+                <Link href="/contact">Əlaqə</Link>
+
+                <SignedOut>
+            <SignInButton>
+            <Link href="/login">Giriş</Link>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton/>
+          </SignedIn>
 
             </div>
             </div>
