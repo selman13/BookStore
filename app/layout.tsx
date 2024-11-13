@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header/page";
 import Footer from "@/components/Footer/page";
+import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar/page";
 
 const robotoRegular = localFont({
   src: "./fonts/Roboto-Regular.ttf",
@@ -26,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+   <ClerkProvider>
+     <html lang="en">
       <body
         className={`${robotoBold.variable} ${robotoRegular.variable} antialiased`}
       >
        <div className="flex flex-col min-h-screen">
-       <Header/>
+      <div className="flex flex-col gap-3">
+      <Header/>
+      <Navbar/>
+      </div>
         <main className="flex-1">
         {children}
         </main>
@@ -39,5 +45,6 @@ export default function RootLayout({
        </div>
       </body>
     </html>
+   </ClerkProvider>
   );
 }
